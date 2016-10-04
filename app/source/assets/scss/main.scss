@@ -1,0 +1,14 @@
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "bower_components/font-awesome/scss/font-awesome.scss";
+
+.main
+{
+  border-color:red;
+  color:red;
+}
+
+
+.btn-purple
+{
+  @include button-variant(white,#9560c4, #7f46b5);
+}

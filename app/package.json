@@ -1,0 +1,19 @@
+{
+  "name": "flask-app",
+  "version": "1.0.0",
+  "description": "flask back-end for angularjs test",
+  "main": "public\\index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "jshint-stylish": "^2.2.1"
+  }
+}
