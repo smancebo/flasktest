@@ -8,6 +8,11 @@
 }
 
 
+.command-td
+{
+  width:50px
+}
+
 .btn-purple
 {
   @include button-variant(white,#9560c4, #7f46b5);

@@ -6,23 +6,23 @@
   <form>
     <div class="form-group">
       <label for="txtDevice" class="control-label">Device Name:</label>
-      <input type="text" id="txtDevice" class="form-control" ng-model="info.device">
+      <input type="text" id="txtDevice" class="form-control" ng-model="$ctrl.info.deviceName">
     </div>
     <div class="form-group">
       <label for="txtIP" class="control-label">IP Adress:</label>
-      <input type="text" id="txtIP" class="form-control" ng-model="info.ip">
+      <input type="text" id="txtIP" class="form-control" ng-model="$ctrl.info.idAddress">
     </div>
     <div class="form-group">
       <label for="txtUsername" class="control-label">Username:</label>
-      <input type="text" id="txtUsername" class="form-control" ng-model="info.username">
+      <input type="text" id="txtUsername" class="form-control" ng-model="$ctrl.info.userName">
     </div>
     <div class="form-group">
       <label for="txtPassword" class="control-label">Password:</label>
-      <input type="password" id="txtPassword" class="form-control" ng-model="info.password">
+      <input type="password" id="txtPassword" class="form-control" ng-model="$ctrl.info.password">
     </div>
     <div class="form-group">
       <label for="txtPort" class="control-label">Port:</label>
-      <input type="text" id="txtPort" class="form-control" ng-model="info.port">
+      <input type="text" id="txtPort" class="form-control" ng-model="$ctrl.info.portNumber">
     </div>
   </form>
 </div>

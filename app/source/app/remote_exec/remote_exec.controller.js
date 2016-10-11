@@ -3,9 +3,13 @@
     var app = angular.module('flaskApp');
     app.controller('remoteExecController', remoteExecController);
 
-    function remoteExecController($scope, $uibModal) {
+    function remoteExecController($scope, $uibModal, machineService) {
         /*jshint validthis:true */
         var $ctrl = this;
+
+        machineService.getMachinelist().then(function(response){
+          $ctrl.machineList = response.data;
+        });
 
         $ctrl.openAddMachine = function() {
 
@@ -14,7 +18,14 @@
               $ctrl.edit = false;
 
               $ctrl.addMachine = function(){
-
+                machineService.addMachine($ctrl.info).then(function(){
+                  machineService.getMachinelist().then(function(response){
+                    debugger
+                    $ctrl.machineList = [];
+                    $ctrl.machineList = response.data;
+                    $uibModalInstance.dismiss('cancel');
+                  });
+                });
               };
               $ctrl.cancel = function(){
                 $uibModalInstance.dismiss('cancel');
@@ -34,6 +45,6 @@
 
 
     }
-    remoteExecController.$inject = ['$scope', '$uibModal'];
+    remoteExecController.$inject = ['$scope', '$uibModal', 'machineService'];
 
 })();
