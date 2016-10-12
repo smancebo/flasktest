@@ -2,9 +2,10 @@ from flask import Blueprint, jsonify, request
 from utils.response import Response
 from models.machine import Machine
 
-machineController = Blueprint('machineController',__name__,'')
+machineController = Blueprint('machineController', __name__, '')
 
-@machineController.route('/add', methods=['POST'])
+
+@machineController.route('/add', methods = ['POST'])
 def addMachine():
     try:
         machine = Machine()
@@ -15,12 +16,16 @@ def addMachine():
             return Response.Ok("successfully inserted", result["id"])
         else:
             return Response.Error(payload = result["message"])
-
-
-    except Exception,e:
+    except Exception, e:
         return jsonify(status = 'ERROR', message = str(e))
+
 
 @machineController.route('/list')
 def listMachine():
-
     return jsonify(Machine.getAll())
+
+
+@machineController.route('/get/<id>')
+def get(id):
+    machine = Machine(id)
+    return jsonify(machine.toJson())

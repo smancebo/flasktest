@@ -1,33 +1,33 @@
 <div class="modal-header">
-  <button type="button" class="close" name="button" ng-click="$ctrl.cancel()">&times;</button>
+  <button type="button" class="close" name="button" ng-click="$modalCtrl.cancel()">&times;</button>
   <h4 class="modal-title" id="exampleModalLabel">Add machine info</h4>
 </div>
 <div class="modal-body">
   <form>
     <div class="form-group">
       <label for="txtDevice" class="control-label">Device Name:</label>
-      <input type="text" id="txtDevice" class="form-control" ng-model="$ctrl.info.deviceName">
+      <input type="text" id="txtDevice" class="form-control" ng-model="$modalCtrl.info.deviceName">
     </div>
     <div class="form-group">
       <label for="txtIP" class="control-label">IP Adress:</label>
-      <input type="text" id="txtIP" class="form-control" ng-model="$ctrl.info.idAddress">
+      <input type="text" id="txtIP" class="form-control" ng-model="$modalCtrl.info.ipAddress">
     </div>
     <div class="form-group">
       <label for="txtUsername" class="control-label">Username:</label>
-      <input type="text" id="txtUsername" class="form-control" ng-model="$ctrl.info.userName">
+      <input type="text" id="txtUsername" class="form-control" ng-model="$modalCtrl.info.userName">
     </div>
     <div class="form-group">
       <label for="txtPassword" class="control-label">Password:</label>
-      <input type="password" id="txtPassword" class="form-control" ng-model="$ctrl.info.password">
+      <input type="password" id="txtPassword" class="form-control" ng-model="$modalCtrl.info.password">
     </div>
     <div class="form-group">
       <label for="txtPort" class="control-label">Port:</label>
-      <input type="text" id="txtPort" class="form-control" ng-model="$ctrl.info.portNumber">
+      <input type="text" id="txtPort" class="form-control" ng-model="$modalCtrl.info.portNumber">
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" ng-hide="$ctrl.edit"  class="btn btn-primary" ng-click="$ctrl.addMachine()" name="button">Add machine</button>
-  <button type="button" ng-show="$ctrl.edit" class="btn btn-primary" ng-click="$ctrl.updateMachine()" name="button">Update machine</button>
-  <button type="button" class="btn btn-default" ng-click="$ctrl.cancel()" name="button">Close</button>
+  <button type="button" ng-hide="$modalCtrl.edit"  class="btn btn-primary" ng-click="$modalCtrl.addMachine()" name="button">Add machine</button>
+  <button type="button" ng-show="$modalCtrl.edit" class="btn btn-primary" ng-click="$modalCtrl.addMachine()" name="button">Update machine</button>
+  <button type="button" class="btn btn-default" ng-click="$modalCtrl.cancel()" name="button">Close</button>
 </div>

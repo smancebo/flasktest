@@ -9,7 +9,8 @@ function machineService($config, $http){
 
   return {
     addMachine: addMachine,
-    getMachinelist : getMachinelist
+    getMachinelist : getMachinelist,
+    getMachine: getMachine
   };
 
   function addMachine(info, modalInstance){
@@ -18,6 +19,10 @@ function machineService($config, $http){
 
   function getMachinelist(){
     return $http.get(apiUrl + "/machine/list");
+  }
+
+  function getMachine(id){
+    return $http.get(apiUrl + "/machine/get/" + id);
   }
 }
 machineService.$inject = ['$config', '$http'];

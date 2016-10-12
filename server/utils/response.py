@@ -1,9 +1,12 @@
 from flask import jsonify
 
+
 class Response(object):
     @staticmethod
     def __response(status, message, payload = {}):
-        return jsonify({"status" : status, "message" : message, "payload" : payload} )
+        return jsonify({"status": status,
+                        "message": message,
+                        "payload": payload})
 
     @staticmethod
     def Ok(message = "successfull", payload = {}):

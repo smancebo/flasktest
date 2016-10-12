@@ -13,35 +13,57 @@
 
         $ctrl.openAddMachine = function() {
 
-            function modalController($uibModalInstance) {
-              var $ctrl = this;
-              $ctrl.edit = false;
-
-              $ctrl.addMachine = function(){
-                machineService.addMachine($ctrl.info).then(function(){
-                  machineService.getMachinelist().then(function(response){
-                    debugger
-                    $ctrl.machineList = [];
-                    $ctrl.machineList = response.data;
-                    $uibModalInstance.dismiss('cancel');
-                  });
-                });
-              };
-              $ctrl.cancel = function(){
-                $uibModalInstance.dismiss('cancel');
-              };
-
+          function modalController($uibModalInstance, info) {
+            var $modalCtrl = this;
+            if(info !== undefined){
+              $modalCtrl.info = info;
+              $modalCtrl.edit = true;
+            }else {
+              $modalCtrl.info = {};
+              $modalCtrl.edit = false;
             }
-            modalController.$inject = ['$uibModalInstance'];
 
+            $modalCtrl.addMachine = function(){
+              machineService.addMachine($modalCtrl.info).then(function(){
+                machineService.getMachinelist().then(function(response){
+                  $ctrl.machineList = [];
+                  $ctrl.machineList = response.data;
+                  $uibModalInstance.dismiss('cancel');
+                });
+              });
+            };
 
-            $uibModal.open({
+            $modalCtrl.cancel = function(){
+              $uibModalInstance.dismiss('cancel');
+            };
+          }
+          modalController.$inject = ['$uibModalInstance', 'info'];
+
+            var instance = $uibModal.open({
                 animation: true,
                 templateUrl: 'remote_exec/addmachine.html',
                 controller: modalController,
-                controllerAs: '$ctrl'
+                controllerAs: '$modalCtrl',
+                resolve: {
+                  info: function(){
+                    return $ctrl.info;
+                  }
+                }
+            });
+
+            instance.closed.then(function(){
+              $ctrl.info = {};
             });
         };
+
+        $ctrl.editMachine = function(machine){
+          machineService.getMachine(machine._id).then(function(response){
+            $ctrl.info = response.data;
+            $ctrl.edit = true;
+            $ctrl.openAddMachine();
+          });
+        };
+
 
 
     }
