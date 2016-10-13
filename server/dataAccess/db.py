@@ -16,7 +16,7 @@ def save(model, collection):
         db = __getDb()
         objModel = __generateObjDict(model)
         col = getattr(db, collection)
-        modelId = isUpdating(model)
+        modelId = __isUpdating(model)
         if(modelId is not None):
             _id = col.update_one({"_id": ObjectId(modelId)},
                                  {"$set": objModel})
@@ -29,7 +29,7 @@ def save(model, collection):
         return {"status": "error", "message": str(e)}
 
 
-def isUpdating(model):
+def __isUpdating(model):
     _id = getattr(model, '_id', None)
     if(_id is not None and not _id == ''):
         return _id
@@ -49,6 +49,16 @@ def query(collection, criteria=None):
 def __getDb():
     client = MongoClient(config.mongoUrl)
     return client.Machines
+
+
+def delete(collection, id):
+    db = __getDb()
+    col = getattr(db, collection)
+    try:
+        col.delete_one({'_id': ObjectId(id)})
+        return True  # successfully
+    except Exception, e:
+        return str(e)  # Error Deleting document
 
 
 def __generateObjDict(model):

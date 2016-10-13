@@ -7,9 +7,13 @@
         /*jshint validthis:true */
         var $ctrl = this;
 
-        machineService.getMachinelist().then(function(response){
-          $ctrl.machineList = response.data;
-        });
+        function reloadMachines(){
+          machineService.getMachinelist().then(function(response){
+            $ctrl.machineList = response.data;
+          });
+        }
+
+        reloadMachines();
 
         $ctrl.openAddMachine = function() {
 
@@ -52,7 +56,7 @@
             });
 
             instance.closed.then(function(){
-              $ctrl.info = {};
+              $ctrl.info = undefined;
             });
         };
 
@@ -61,6 +65,13 @@
             $ctrl.info = response.data;
             $ctrl.edit = true;
             $ctrl.openAddMachine();
+          });
+        };
+
+        $ctrl.deleteMachine = function(machine){
+          machineService.deleteMachine(machine._id).then(function(response){
+            console.log(response);
+            reloadMachines();
           });
         };
 

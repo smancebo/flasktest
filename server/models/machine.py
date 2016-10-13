@@ -26,6 +26,10 @@ class Machine(baseModel):
             self.get(id)
 
     @staticmethod
+    def delete(id):
+        return db.delete('machines', id)
+
+    @staticmethod
     def getAll(criteria=None):
         machineList = []
         cursor = db.query('machines', criteria)
@@ -37,9 +41,10 @@ class Machine(baseModel):
                 "userName": machine["userName"],
                 "password": machine["password"],
                 "portNumber": machine["portNumber"]
-            }
+                }
             machineList.append(machineItem)
-
+    
+        print("done")
         return machineList
 
     def get(self, id):

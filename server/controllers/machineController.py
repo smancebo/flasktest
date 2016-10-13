@@ -25,6 +25,16 @@ def listMachine():
     return jsonify(Machine.getAll())
 
 
+@machineController.route('/delete', methods=['POST'])
+def deleteMachine():
+    postData = request.json
+    result = Machine.delete(postData["_id"])
+    if(result):
+        return Response.Ok()
+    else:
+        return Response.Error(result)
+
+
 @machineController.route('/get/<id>')
 def get(id):
     machine = Machine(id)
